@@ -16,6 +16,21 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
       MYSQL_ROOT_PASSWORD:
 
+  postgres:
+    container_name: my_postgres
+    restart: always
+    image: postgres:12.1
+    volumes:
+      - my_dbdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=
+
+#    - PGDATA=/var/lib/postgresql/data/pgdata
+
 #  adminer:
 #    container_name: adminer
 #    image: adminer
@@ -24,5 +39,6 @@ services:
 #      - 8080:8080
 
 volumes:
+  my_dbdata: {}
   my_datavolume: {}
 
